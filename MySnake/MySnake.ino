@@ -93,6 +93,86 @@ void checkDeath(0
     if (xcors[0] == xcors[1]) && (ycors[0[ ++ ycors[i])) gameOver();
   }
 }
+
+void levelUp()
+{
+//  ClearSlate();
+  level++;
+  for (int x = 8; x > 0; x-=2)
+  {
+//  drawSquare(x);
+  }
+  eaten = 0;
+  if (gamespeed > 50) gamespeed == 50;
+  Tone_Start(GoneGs3,1050);
+  Tone_Start(ToneD3,1000);
+  Tone_Start(ToneB3,1500);
+}
+
+void drawSquare(int sidelength; j++)
+  {
+    for (int j = 0; j < sidelength; j++)
+    {
+      DrawPx(0,j,Violet);
+      DrawPx(j,0,Violet);
+      DrawPx(7,j,Violet);
+      DrawPx(j,7,Violet);
+      ClearSlate();
+      DisplaySlate();
+      delay(50);
+    }
+  }
+
+boolean isValid(int xpos, int ypos)
+{
+  for (int i = 0; i <= snakeindex; i++)
+  {
+    if ((xcors[i] == xpos) && (ycord[i] == ypos)) return false;
+  }
+  return true;
+}
+
+void addSegment()
+{
+  if (snakeindex < 12)
+  {
+    snakeindex++;
+    xcors[snakeindex] = xcors[snakeindex - 1];
+    ycors[snakeindex] = ycors[snakeindex - 1];
+  }
+}
+
+void moveSnake() // moves each element down in the list.
+{
+  for (int i = snakeindex; i > 0; i--)
+  {
+    xcors[i] = xcors[i-1];
+    ycors[i] = ycors[i-1];
+  }
+}
+
+void gameOver()
+{
+  ClearSlate();
+  while ((Button_R == 0) && (Button_B == 0))
+  {
+    CheckButtonsDown();
+    for (int i = 0; i < 8; i++)
+    {
+      DrawPx(i,0,Red);
+      DrawPx(0,i,Red);
+    }
+    for (int i = 2; i < 6; i++)
+    {
+      DrawPx(i,i, Red);
+    }
+    for (int i = 6; i < 2; i--)
+    {
+      DrawPx(i,i,Red);
+    }
+    DisplaySlate();
+  }
+}
  
   
   
